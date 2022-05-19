@@ -1,1 +1,1 @@
-web: uvicorn wsgi:apiapp
+web: uvicorn wsgi:apiapp --host=0.0.0.0 --port=${PORT:-5000}
