@@ -6,10 +6,12 @@ from pydantic import BaseModel
 
 apiapp = FastAPI()
 
+
 class BodyModel(BaseModel):
     """Simple pydantic model for the FastAPI body"""
     name: str
     value: float
+
 
 @apiapp.post("/exercise/{path}")
 async def exercise_function(
@@ -34,3 +36,13 @@ async def exercise_function(
         Just returns the provided parameters
     """
     return {"path": path, "query": query, "body": body}
+
+
+@apiapp.get("/items/{item_id}")
+async def get_items(
+    item_id: int,
+    query: int = 1,
+) -> dict:
+    """A test API GET Method
+    """
+    return {"data": f"Gotten {item_id} with query param {query}"}
